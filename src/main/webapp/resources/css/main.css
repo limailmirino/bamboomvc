@@ -1,0 +1,310 @@
+body {
+	font-family: allerregular, sans-serif;
+	color: #333;
+	min-width: 1320px;
+	background-color: #232F3F;
+}
+
+#pageContent {
+    border: 2px solid #3f3323;
+    padding: 20px;
+}
+
+div,form, input, table {
+	border-radius: 5px;
+}
+
+input {
+	border: 1px solid #ACACAC;
+	padding: 3px 10px;
+	color: #555;
+}
+
+input[type="submit"] {
+	border: 2px solid #999;
+}
+
+div.container {
+	padding: 1em;
+	width: 80%;
+	margin: 0 auto;
+	border: 2px solid #3F3323;
+	min-height: 600px;
+	background-color: #FFFFFF;
+}
+
+a {
+	color: #232F3F;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a#hover {
+	color: #3E5470;
+	text-decoration: underline;
+}
+
+#pageTitle {
+	font-size: 28pt;
+	font-weight: bold;
+	color: #555555;
+	float: right;
+}
+
+#navBar {
+	height: 30px;
+	line-height: 30px;
+	font-weight: bold;
+}
+
+#navBarMenu {
+	margin: 0;
+	/*
+	list-item-style: none;
+	*/
+}
+
+#navBarMenu li {
+	display: inline;
+}
+
+#navBarMenu li a {
+	color: #EEEEEE;
+}
+
+#spinner {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: -10px -10px auto auto;
+}
+
+form div {
+	padding: 3px 0;
+}
+
+form div label {
+	display: inline-block;
+	width: 150px;
+	text-align: right;
+	padding-right: 5px;
+	font-weight: bold;
+}
+
+
+#header {
+	padding: 0.5em;
+	line-height: 28pt;
+}
+
+.highlight {
+	background-color: #232F3F;
+	color: #CCC;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin: 20px 0;
+	font-size: small;
+}
+
+table.list {
+	border: 1px solid #3E5470;
+}
+
+th {
+	background-color: #3E5470;
+	color: #EEE;
+	font-weight: bold;
+	text-align: center;
+	padding: 3px;
+}
+
+table.list td {
+	border: 1px solid #3E5470;
+	padding: 3px;
+}
+
+td.noData {
+	text-align: center;
+	line-height: 40px;
+}
+
+.center {
+	text-align: center;
+}
+
+div.formSection {
+	font-weight: bold;
+	color: #3E5470;
+	font-size: large;
+	padding: 5px;
+	border-bottom: 1px solid #EEE;
+	margin: 20px 0px;
+}
+
+	
+div.button {
+	margin: 20px auto 0px auto;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	border: 2px solid #DDD;
+	cursor: pointer;
+	background-color: #EEE;
+	font-weight: bold;
+}
+
+img.icon {
+	width: 20px;
+	height: 20px;
+}
+
+div.boxout {
+	border: 1px solid #3E5470;
+}
+
+div.boxout-title {
+	background-color: #3E5470;
+	color: #DDD;
+	font-weight: bold;
+	font-size: medium;
+	padding: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+div.boxout-body {
+	margin: 5px;	
+}
+
+span#password {
+	font-family: monospace, courier new;
+}
+
+span.button {
+	/*
+		font-size: x-small;
+	*/
+	display: inline-block;
+	background-color: #EEE;
+	border: 1px solid #CCC;
+	padding: 2px 2px;
+	margin: 2px 10px;
+	cursor: pointer;
+	border-radius: 5px;
+
+}
+
+#btnUpdate{
+
+}
+
+span.button:hover {
+	background-color: #CCC;
+	border: 2px solid #EEE;
+}
+
+div.select {
+	position: relative;
+	padding-left: 5px;
+	top: 4px;
+	text-align: right; 
+	width: 184px; 
+	border: 1px solid #ACACAC; 
+	display: inline-block; 
+	overflow: hidden;
+    background-size: 10%;
+    background: url("/usermanagement-final/resources/img/down-arrow.png") no-repeat right center;
+}
+
+div.table {
+	border-radius: 0px;
+}
+
+div.table div {
+	line-height: 30px;
+}
+
+div.table div div:first-child {
+	font-weight: bold;
+	text-align: right;
+	padding-right: 5px;
+}
+
+div.table div div:nth-child(2) {
+	padding-left: 10px;
+}
+
+/*	Group div	*/
+div.selectable.div-MAIN{
+	background-color: #d40032;
+	color: #EEE;
+	border: 2px solid #a40012;
+}
+div.selectable.div-JOLLY{
+	background-color: #fdff9f;
+	color: black;
+	border: 2px solid #d1d20a;
+}
+div.selectable.div-NEWS{
+	background-color: #a5e085;
+	color: black;
+	border: 2px solid #527b0e;
+}
+div.selectable.div-DOCS{
+	background-color: #ffc96f;
+	color: black;
+	border: 2px solid #ff8100;
+}
+
+div.selectable {
+	/*
+	background-color: #d40032;
+	color: #EEE;
+	border: 2px solid #a40012;
+	*/
+	margin: 2px;
+	text-align: center;
+	cursor: pointer;
+}
+
+div.selectable.selected {
+	background-color: #0063d4;
+}
+
+span#alfresco-message{
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) url('/usermanagement-final/resources/img/ajax-loader.gif') 50% 50% no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}

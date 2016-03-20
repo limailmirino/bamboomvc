@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- MySQL DB DataSource -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/party" />
+		<property name="username" value="root" />
+		<property name="password" value="monocomio" />
+	</bean>
+
+    <!-- JDBC DAO bean-->
+	<bean id="jdbcUserDao" class="it.bamboolab.dao.JdbcUserDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="EventDAO" class="it.bamboolab.dao.EventDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+    <!-- LDAP DAO bean-->
+    <bean id="ldapUserDao" class="it.bamboolab.dao.LdapUserDao">
+    </bean>
+
+    <!-- Controllers bean-->
+    <bean id="userController" class="it.bamboolab.controller.RestController">
+    </bean>
+
+    <context:component-scan base-package="it.bamboolab" />
+
+</beans>

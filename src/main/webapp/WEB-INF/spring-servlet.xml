@@ -16,6 +16,7 @@
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<security:http pattern="/resources/**" security="none" />
+	
 	<security:http pattern="/login" security="none" />
 	<security:http auto-config="true">
 		<!-- <security:intercept-url pattern="/admin**" access="ROLE_USER" />  -->
@@ -54,12 +55,12 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- MySQL DB DataSource -->
+	<!-- MySQL DB DataSource --> 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/party" />
-		<property name="username" value="root" />
-		<property name="password" value="monocomio" />
+		<property name="username" value="generic_user" />
+		<property name="password" value="password" />
 	</bean>
 
     <!-- JDBC DAO bean-->

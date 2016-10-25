@@ -61,7 +61,7 @@ public class EventDAO {
 
     public List<Event> getAll() {
 
-        String sql = "SELECT * FROM events";
+        String sql = "SELECT * FROM event";
 
         List<Event> events  = jdbcTemplate.query(sql,
                 new BeanPropertyRowMapper(Event.class));

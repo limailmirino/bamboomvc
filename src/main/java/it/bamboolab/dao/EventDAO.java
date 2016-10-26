@@ -3,21 +3,22 @@ package it.bamboolab.dao;
 import it.bamboolab.model.Event;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.List;
 
-/**
- * Created by enrico on 12/13/15.
- */
+@Repository
 public class EventDAO {
 
     private static final Logger logger = Logger.getLogger(JdbcUserDao.class);
+    
+    private SessionFactory sessionFactory;
 
     // Template as a properties
     private JdbcTemplate jdbcTemplate;
@@ -25,6 +26,9 @@ public class EventDAO {
     // Empty costructor
     public EventDAO(){}
 
+    public void setSessionFactory(SessionFactory sessionFactory){
+		this.sessionFactory = sessionFactory;
+	}
     // Datasource costructor
     public EventDAO(DataSource ds) {this.jdbcTemplate = new JdbcTemplate(ds);}
 
@@ -61,11 +65,34 @@ public class EventDAO {
 
     public List<Event> getAll() {
 
+    	/*
         String sql = "SELECT * FROM event";
 
-        List<Event> events  = jdbcTemplate.query(sql,
-                new BeanPropertyRowMapper(Event.class));
+        List<Event> events  = jdbcTemplate.query(
+        			sql,
+        			new BeanPropertyRowMapper(Event.class)
+                );
 
         return events;
+        */
+    	Session session = this.sessionFactory.getCurrentSession();
+		List<Event> eventList = session.createQuery("from event").list();
+		for(Event e : eventList){
+			logger.info("Event List::" + e);
+		}
+		return eventList;
+        
+    }
+    
+    public List<Event> listAll() {
+
+    	
+    	Session session = this.sessionFactory.getCurrentSession();
+		List<Event> eventList = session.createQuery("from event").list();
+		for(Event e : eventList){
+			logger.info("Event List::" + e);
+		}
+		return eventList;
+    	
     }
 }

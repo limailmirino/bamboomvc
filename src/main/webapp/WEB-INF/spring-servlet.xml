@@ -50,11 +50,11 @@
 		<property name="prefix" value="" />
 		<property name="suffix" value=".ftl" />
 	</bean>
-
+<!-- 
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
+ -->
 	<!-- MySQL DB DataSource --> 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -62,13 +62,42 @@
 		<property name="username" value="generic_user" />
 		<property name="password" value="password" />
 	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    
+	    <property name="dataSource" ref="dataSource" />
+	     <!-- 
+	    <property name="mappingResources">
+            <list>
+                <value>event.hbm.xml</value>
+            </list>
+        </property>
+	     -->
+	    <property name="hibernateProperties">
 
-    <!-- JDBC DAO bean-->
-	<bean id="jdbcUserDao" class="it.bamboolab.dao.JdbcUserDao">
-		<property name="dataSource" ref="dataSource" />
+	        <props>
+
+	            <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+	            <prop key="hibernate.show_sql">true</prop>
+	            <prop key="hibernate.format_sql">true</prop>
+
+	        </props>
+
+	    </property>
+
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="EventDAO" class="it.bamboolab.dao.EventDAO">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- JDBC DAO bean-->
+	<bean id="jdbcUserDao" class="it.bamboolab.dao.JdbcUserDao">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 

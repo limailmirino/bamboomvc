@@ -225,11 +225,15 @@ public class RestController {
         return mav;
     }
 
-    @RequestMapping(value="/events/all", method=RequestMethod.GET)
+    @RequestMapping(
+    		value="/events/all", 
+    		method=RequestMethod.GET,
+    		produces = { "application/json" }
+    )
     public ModelAndView getAllEvents() {
 
         JSONObject obj = new JSONObject();
-        List<Event> eventList = eventDAO.getAll();
+        List<Event> eventList = eventDAO.listAll();
 
         if(eventList.size()>0){
             obj.put("status","OK");

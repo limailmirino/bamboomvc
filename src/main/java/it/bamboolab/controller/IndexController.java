@@ -31,7 +31,7 @@ public class IndexController {
 		
 		ModelAndView mav = new ModelAndView();
 
-        List<Event> eventList = eventDAO.getAll();
+        List<Event> eventList = eventDAO.listAll();
 
         mav.addObject("events", eventList);
 

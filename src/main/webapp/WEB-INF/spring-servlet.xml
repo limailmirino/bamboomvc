@@ -15,6 +15,16 @@
         	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- View resolvers can also be configured with ResourceBundles or XML files. 
+		If you need different view resolving based on Locale, you have to use the 
+		resource bundle resolver.-->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="cache" value="true" />
+		<property name="prefix" value="" />
+		<property name="suffix" value=".ftl" />
+	</bean>
+
 	<security:http pattern="/resources/**" security="none" />
 	
 	<security:http pattern="/login" security="none" />
@@ -42,19 +52,7 @@
 		<property name="templateLoaderPath" value="/WEB-INF/ftl/" />
 	</bean>
 
-	<!-- View resolvers can also be configured with ResourceBundles or XML files. 
-		If you need different view resolving based on Locale, you have to use the 
-		resource bundle resolver.-->
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="cache" value="true" />
-		<property name="prefix" value="" />
-		<property name="suffix" value=".ftl" />
-	</bean>
-<!-- 
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
- -->
+
 	<!-- MySQL DB DataSource --> 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -66,13 +64,14 @@
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
     
 	    <property name="dataSource" ref="dataSource" />
-	     <!-- 
-	    <property name="mappingResources">
-            <list>
-                <value>event.hbm.xml</value>
-            </list>
-        </property>
-	     -->
+	    
+	    <property name="annotatedClasses">
+      		<list>
+        	<value>it.bamboolab.model.Event</value>
+        	<value>it.bamboolab.model.Ride</value>
+      		</list>
+    	</property>
+    	
 	    <property name="hibernateProperties">
 
 	        <props>
@@ -91,20 +90,24 @@
     	<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="EventDAO" class="it.bamboolab.dao.EventDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
 	
-	<!-- JDBC DAO bean-->
+	
+	<!-- Users -->
 	<bean id="jdbcUserDao" class="it.bamboolab.dao.JdbcUserDao">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- LDAP DAO bean-->
     <bean id="ldapUserDao" class="it.bamboolab.dao.LdapUserDao">
     </bean>
-
+    
+    <!-- DAO -->
+    <bean id="EventDAO" class="it.bamboolab.dao.EventDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="RideDAO" class="it.bamboolab.dao.RideDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
     <context:component-scan base-package="it.bamboolab" />
 	<tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager" />
 	<mvc:annotation-driven />

@@ -7,20 +7,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="event")
+@Entity(name="events")
 public class Event {
 
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private String id;
+	
+	@Column(name = "title")
     private String title;
-    private String description;
-    private String location;
+	
+	@Column(name = "description")
+	private String description;
+    
+	@Column(name = "location")
+	private String location;
+	
+	@Column(name = "start")
     private String start;
+	
+	@Column(name = "end")
     private String end;
-    private String pictureSmall;
+	
+	@Column(name = "picture")
+    private String picture;
 
     public String getId() {
         return id;
@@ -72,10 +83,10 @@ public class Event {
     }
 
     public String getPictureSmall() {
-        return pictureSmall;
+        return picture;
     }
 
-    public void setPictureSmall(String pictureSmall) {
-        this.pictureSmall = pictureSmall;
+    public void setPictureSmall(String picture) {
+        this.picture = picture;
     }
 }
